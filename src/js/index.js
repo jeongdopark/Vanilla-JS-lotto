@@ -1,12 +1,9 @@
 
 
-
 const $showResultButton = document.querySelector('.open-result-modal-button')
 const $modalClose = document.querySelector('.modal-close')
 const $modal = document.querySelector('.modal')
-const $lottoNumbersToggleButton = document.querySelector(
-  '.lotto-numbers-toggle-button'
-)
+const $lottoNumbersToggleButton = document.querySelector('.lotto-numbers-toggle-button')
 const mt_9 = document.querySelectorAll('.mt-9') // step1 실행 전, display none 처리해야하는 부분
 const ticketInfo = document.querySelector('.ticket-info') // 티켓 UI와 구매정보가 담겨있다.
 const btn = document.querySelector('.btn')  // 
@@ -14,6 +11,19 @@ const ticketAmount = document.querySelector('.ticket-amount')
 const ticket_UI_Wrap = document.querySelector('.ticket-UI-wrap')
 const money_Input = document.getElementById("money-input")
 
+const ticketArray = Array.from({length: 45}, () => 0);    //  배열 만들기
+
+
+
+let inputSwitch = "False"
+let toggleCheckedValue = $lottoNumbersToggleButton.checked     // toggle의 boolean값 
+
+
+    if(toggleCheckedValue){         // toggle에 따른 초기값 설정
+      ticket_UI_Wrap.style.flexDirection = "column"
+    }else{
+      ticket_UI_Wrap.style.flexDirection = "row"
+    }
 // const onModalShow = () => {
 //   $modal.classList.add('open')
 // }
@@ -31,31 +41,26 @@ for(let i = 0; i < mt_9.length; i++){       // modal 부분은 display none 처�
 }
 
 
-// function oneTimeEventListener(dom, type){
-//     dom.addEventListener(type, () =>{
-//       clickOrEnterEvent()
-//       dom.removeEventListener(type, () => {
-//         return true
-//       })
-//     })
-// }
-
-
-
-
-
 btn.addEventListener('click', () =>{        // 버튼 click 
-    clickOrEnterEvent()
-}, {once : true})
+    if(inputSwitch === "False"){      // 변수 inputSwitch를 통해서 티켓구매 여부를 체크 
+      clickOrEnterEvent()             // inputSwitch가 "True"인 상태면 더이상 click이나 keydown을 통해 clickOrEnterEvent()함수가 실행 안된다
+      inputSwitch = "True"
+    }else{
+      return true
+    }
+})
 
 
 document.addEventListener('keydown', (e) =>{        // enter 버튼 
-  e.preventDefault()
-  const keycode = e.keyCode
-  if(keycode == 13){
+  const keycode = e.keyCode;
+  if(keycode === 13 && inputSwitch === "False"){
+    e.preventDefault()        // preventDefault() 없을 경우 새로고침됨
     clickOrEnterEvent()
+    inputSwitch = "True"
+  }if(keycode === 13 && inputSwitch === "True"){      // elif가 왜 안되는건지
+    e.preventDefault()
   }
-}, {once : true})
+})
 
 
 function clickOrEnterEvent(num){
@@ -71,7 +76,6 @@ function clickOrEnterEvent(num){
   displayBlock(ticketInfo)
   ticketAmountInfo(multiple)
   createTicketUI(multiple)
-  
 }
 
 
@@ -81,11 +85,9 @@ function ticketAmountInfo(amount){    // 구매 개수를 알려주는 function
 }
 
 
-
 function displayBlock(c){        // display none 이었던 section을 display block으로 변경하는 function
   c.style.display = 'block'
 }
-
 
 
 function createTicketUI(multiple){      // 구매 개수만큼 ticket UI를 나타내는 function
@@ -98,3 +100,17 @@ function createTicketUI(multiple){      // 구매 개수만큼 ticket UI를 나�
 }
 
 
+$lottoNumbersToggleButton.addEventListener('click', function(){       // toggle의 value를 얻는 function
+    let toggleCheckedValue = $lottoNumbersToggleButton.checked
+    if(toggleCheckedValue){
+      ticket_UI_Wrap.style.flexDirection = "column"
+    }else{
+      ticket_UI_Wrap.style.flexDirection = "row"
+    }
+})
+
+// function showTicketNumber(){
+    
+// }
+
+const randomNumber = Math.random()
