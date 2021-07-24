@@ -22,6 +22,6 @@ body {
   width: 30px;
   height: 36px;
 }
-.show {
+.displayNone {
   display : none
 }
