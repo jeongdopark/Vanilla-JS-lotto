@@ -22,6 +22,14 @@ body {
   width: 30px;
   height: 36px;
 }
-.displayNone {
+.HIDDEN {
   display : none
+}
+
+.SHOW{
+  display : block
+}
+
+.ticketNumber{
+  display : block
 }
