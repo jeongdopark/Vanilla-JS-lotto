@@ -1,4 +1,7 @@
-export let EVERY_ARRAY = []
+export let EVERY_ARRAY = {
+    everyArray : [],
+    count : 0
+}
 
 export var WINNING_NUMBER = []
 export var BONUS_NUMBER = []

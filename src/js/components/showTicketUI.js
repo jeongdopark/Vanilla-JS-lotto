@@ -6,16 +6,19 @@ import { EVERY_ARRAY } from "../utils/info.js";
 export class showTicketUI{
     constructor(){
     }
-    
     TicketSectionHTML(){            //  티켓UI를 나타내는 부분
-        new AutoLottoNumber().addArray()  //모든 티켓의 로또번호가 담겨있는 배열 , 첫 실행
-        EVERY_ARRAY.forEach((x) => {
+        // new AutoLottoNumber().addArray()  //모든 티켓의 로또번호가 담겨있는 배열 , 첫 실행
+        for(let i = EVERY_ARRAY.count; i < EVERY_ARRAY.everyArray.length; i++){
             const $TICKET_UI = createElement('span', 'mx-1 text-4xl ticketUI', '🎟️');
             $TICKET_UI_WRAP.appendChild($TICKET_UI)
-            $TICKET_UI.appendChild(this.createChildHTML(x))
-        })
+            $TICKET_UI.appendChild(this.createChildHTML(EVERY_ARRAY.everyArray[i]))
+        }
+        // EVERY_ARRAY.forEach((x) => {
+            // const $TICKET_UI = createElement('span', 'mx-1 text-4xl ticketUI', '🎟️');
+            // $TICKET_UI_WRAP.appendChild($TICKET_UI)
+            // $TICKET_UI.appendChild(this.createChildHTML(x))
+        // })
     }
-    
     createChildHTML(array){                 // 숫자를 나타내는 부분
         let ticketNumber = ""
         array.forEach((element) => {

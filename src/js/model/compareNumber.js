@@ -3,7 +3,7 @@ import { resultModalCount } from "../controller/resultModal.js";
 export const compareNumber = () => {
     let THREE = 0, FOUR = 0, FIVE = 0, FIVE_BONUS = 0, SIX = 0
 
-    EVERY_ARRAY.forEach((userTicketNumberArray) => {
+    EVERY_ARRAY.everyArray.forEach((userTicketNumberArray) => {
         const compareArray = userTicketNumberArray.filter(x => WINNING_NUMBER[0].includes(x))
         let COUNT = compareArray.length
         

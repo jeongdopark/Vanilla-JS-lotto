@@ -7,6 +7,7 @@ import { TICKET_PRICE } from './constants.js'
 export const ticketCount = money => {       // 티켓 개수
     return Math.floor(money / TICKET_PRICE)
 }
+
 export const changeMoney = money => {       // 거스름돈
     return money % TICKET_PRICE
 }
@@ -20,7 +21,10 @@ export const ticketAmountInfoSection = count => {
     $TICKET_AMOUNT.textContent = `총 ${count}개를 구매하였습니다`
 }
 export const differentNumberAlert = () => {
-    return window.alert("서로 다른 7개의 숫자를 입력해주세요")
+    return window.alert("1 ~ 45 범위의 서로 다른 7개의 숫자를 입력해주세요")
+}
+export const collectRangeNumberAlert = () => {
+    return window.alert("1 ~ 45 범위의 숫자를 입력해주세요")
 }
 
 export const createElement = (tagName, className, text = ' ' ) =>{
